@@ -27,8 +27,7 @@ class TransactionItem extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(6),
             child: FittedBox(
-              child: Text(
-                  '\$${transaction.amount.toStringAsFixed(2)}'),
+              child: Text('\$${transaction.amount.toStringAsFixed(2)}'),
             ),
           ),
         ),
@@ -40,10 +39,12 @@ class TransactionItem extends StatelessWidget {
           DateFormat.yMMMd().format(transaction.date),
         ),
         trailing: MediaQuery.of(context).size.width > 360
-            ? FlatButton.icon(
+            ? TextButton.icon(
                 icon: Icon(Icons.delete),
                 label: Text('Delete'),
-                textColor: Theme.of(context).errorColor,
+                style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all(
+                        Theme.of(context).errorColor)),
                 onPressed: () => deleteTx(transaction.id),
               )
             : IconButton(
